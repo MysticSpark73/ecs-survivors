@@ -1,20 +1,19 @@
-﻿using Code.Gameplay.Cameras.Provider;
-using Code.Gameplay.Common.Time;
+﻿using Code.Common.Destroy;
 using Code.Gameplay.Features.Hero;
 using Code.Gameplay.Features.Movement;
 using Code.Gameplay.Input;
-using Code.Gameplay.Input.Service;
+using Code.Infrastructure.Systems;
 
 namespace Code.Gameplay
 {
     public class BattleFeature : Feature
     {
-        public BattleFeature(GameContext gameContext, ITimeService timeService, IInputService inputService,
-            ICameraProvider cameraProvider)
+        public BattleFeature(ISystemFactory systemFactory)
         {
-            Add(new InputFeature(gameContext, inputService));
-            Add(new HeroFeature(gameContext, cameraProvider));
-            Add(new MovementFeature(gameContext, timeService));
+            Add(systemFactory.Create<InputFeature>());
+            Add(systemFactory.Create<HeroFeature>());
+            Add(systemFactory.Create<MovementFeature>());
+            Add(systemFactory.Create<ProcessDestroyedFeature>());
         }
     }
 }
