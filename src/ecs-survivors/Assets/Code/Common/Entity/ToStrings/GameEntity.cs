@@ -34,11 +34,11 @@ public sealed partial class GameEntity : INamedEntity
       {
         switch (component.GetType().Name)
         {
-          // case nameof(Hero):
-          //   return PrintHero();
+          case nameof(Hero):
+            return PrintHero();
 
-          // case nameof(Enemy):
-          //   return PrintEnemy();
+          case nameof(Enemy):
+            return PrintEnemy();
         }
       }
     }
@@ -50,17 +50,17 @@ public sealed partial class GameEntity : INamedEntity
     return components.First().GetType().Name;
   }
 
-  // private string PrintHero()
-  // {
-  //   return new StringBuilder($"Hero ")
-  //     .With(s => s.Append($"Id:{Id}"), when: hasId)
-  //     .ToString();
-  // }
-  //
-  // private string PrintEnemy() =>
-  //   new StringBuilder($"Enemy ")
-  //     .With(s => s.Append($"Id:{Id}"), when: hasId)
-  //     .ToString();
+  private string PrintHero()
+  {
+    return new StringBuilder($"Hero ")
+      .With(s => s.Append($"Id:{ID}"), when: hasID)
+      .ToString();
+  }
+  
+  private string PrintEnemy() =>
+    new StringBuilder($"Enemy ")
+      .With(s => s.Append($"Id:{ID}"), when: hasID)
+      .ToString();
   
   public string BaseToString() => base.ToString();
 }

@@ -9,6 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1835253824857810547}
+  - component: {fileID: 8612078310500346664}
+  - component: {fileID: 8804751512449472857}
+  - component: {fileID: 6328903591301282963}
+  - component: {fileID: 4398404293825789205}
+  - component: {fileID: 5693306809633409172}
   m_Layer: 0
   m_Name: enemyBase
   m_TagString: Untagged
@@ -33,6 +38,74 @@ Transform:
   - {fileID: 7367176771142617007}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8612078310500346664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1439855031686531578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5fff8fca78741ebbfe378bea3834d6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8804751512449472857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1439855031686531578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e11f354a3ed46f297dbadb913ef5787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EntityView: {fileID: 8612078310500346664}
+  _speed: 1
+  _enemyAnimator: {fileID: 8559813977057066953}
+--- !u!114 &6328903591301282963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1439855031686531578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cf28755a69243f18df6a9e5b8dcc6b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EntityView: {fileID: 8612078310500346664}
+  _spriteRenderer: {fileID: 0}
+--- !u!114 &4398404293825789205
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1439855031686531578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f18f35d3f464a00b1ee197ac64b8b7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EntityView: {fileID: 8612078310500346664}
+--- !u!114 &5693306809633409172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1439855031686531578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c19c5b2a6ff4f2db3604074d945c01d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EntityView: {fileID: 8612078310500346664}
+  _enemyAnimator: {fileID: 8559813977057066953}
 --- !u!1 &3126144766799759099
 GameObject:
   m_ObjectHideFlags: 0
@@ -120,6 +193,7 @@ GameObject:
   m_Component:
   - component: {fileID: 37033163526465442}
   - component: {fileID: 3626643382493988023}
+  - component: {fileID: 8559813977057066953}
   m_Layer: 0
   m_Name: container
   m_TagString: Untagged
@@ -163,3 +237,17 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &8559813977057066953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8372560596226481995}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cded7793f304c71932b3d7288672b89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Animator: {fileID: 3626643382493988023}
+  SpriteRenderer: {fileID: 0}

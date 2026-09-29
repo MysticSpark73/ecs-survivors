@@ -1,29 +1,28 @@
-﻿using Code.Common.Entity;
-using Code.Common.Extensions;
-using Code.Gameplay.Features.Hero.Behaviours;
+﻿using Code.Common.Extensions;
+using Code.Infrastructure.View.Registrars;
 using UnityEngine;
 
 namespace Code.Gameplay.Features.Hero.Registrars
 {
-    public class HeroRegistrar : MonoBehaviour
+    public class HeroRegistrar : EntityComponentRegistrar
     {
         [SerializeField] private float _speed = 2;
-        [SerializeField] private HeroAnimator _heroAnimator;
-        
-        private GameEntity _entity;
+        [SerializeField] private float _maxHp = 100;
 
-        private void Awake()
+        public override void RegisterComponents()
         {
-            _entity = CreateEntity.
-                Empty()
-                .AddTransform(transform)
+            Entity
                 .AddWorldPosition(transform.position)
                 .AddDirection(Vector2.zero)
                 .AddSpeed(_speed)
-                .AddHeroAnimator(_heroAnimator)
-                .AddSpriteRenderer(_heroAnimator.SpriteRenderer)
+                .AddCurrentHP(_maxHp)
+                .AddMaxHP(_maxHp)
                 .With(e => e.isHero = true)
                 .With(e => e.isTurnedAlongDirection = true);
+        }
+
+        public override void UnregisterComponents()
+        {
         }
     }
 }
