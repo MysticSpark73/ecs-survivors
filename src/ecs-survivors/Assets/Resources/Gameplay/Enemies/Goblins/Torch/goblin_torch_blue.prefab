@@ -204,6 +204,14 @@ PrefabInstance:
       propertyPath: _spriteRenderer
       value: 
       objectReference: {fileID: 3224600182354190819}
+    - target: {fileID: 8559813977057066953, guid: 87dfb064bc6d941469d685bf5de17e77, type: 3}
+      propertyPath: Animator
+      value: 
+      objectReference: {fileID: 1049083796407712975}
+    - target: {fileID: 8559813977057066953, guid: 87dfb064bc6d941469d685bf5de17e77, type: 3}
+      propertyPath: SpriteRenderer
+      value: 
+      objectReference: {fileID: 3224600182354190819}
     m_RemovedComponents:
     - {fileID: 6856359518670333204, guid: 87dfb064bc6d941469d685bf5de17e77, type: 3}
     - {fileID: 2902833281619657816, guid: 87dfb064bc6d941469d685bf5de17e77, type: 3}

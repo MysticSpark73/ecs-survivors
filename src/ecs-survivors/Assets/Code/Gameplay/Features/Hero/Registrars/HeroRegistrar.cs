@@ -18,7 +18,8 @@ namespace Code.Gameplay.Features.Hero.Registrars
                 .AddCurrentHP(_maxHp)
                 .AddMaxHP(_maxHp)
                 .With(e => e.isHero = true)
-                .With(e => e.isTurnedAlongDirection = true);
+                .With(e => e.isTurnedAlongDirection = true)
+                .With(e => e.isMovementAvailable = true);
         }
 
         public override void UnregisterComponents()

@@ -11,6 +11,8 @@ namespace Code.Gameplay.Features.Hero
             Add(systemFactory.Create<SetHeroDirectionByInput>());
             Add(systemFactory.Create<AnimateHeroMovementSystem>());
             Add(systemFactory.Create<CameraFollowHeroSystem>());
+            Add(systemFactory.Create<HeroDeathSystem>());
+            Add(systemFactory.Create<FinalizeHeroDeathProcessingSystem>());
         }
     }
 }
