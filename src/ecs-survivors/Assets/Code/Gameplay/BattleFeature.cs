@@ -1,4 +1,5 @@
 ﻿using Code.Common.Destroy;
+using Code.Gameplay.Features.Abilities;
 using Code.Gameplay.Features.DamageApplication;
 using Code.Gameplay.Features.Enemies;
 using Code.Gameplay.Features.Hero;
@@ -21,6 +22,7 @@ namespace Code.Gameplay
             Add(systemFactory.Create<EnemyFeature>());
             Add(systemFactory.Create<DeathFeature>());
             Add(systemFactory.Create<MovementFeature>());
+            Add(systemFactory.Create<AbilityFeature>());
             Add(systemFactory.Create<CollectTargetsFeature>());
             Add(systemFactory.Create<DamageApplicationFeature>());
             Add(systemFactory.Create<ProcessDestroyedFeature>());
