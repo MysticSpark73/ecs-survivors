@@ -41,6 +41,7 @@ namespace Code.Gameplay.Features.Armaments.Factory
                 .With(e => e.isMovementAvailable = true)
                 .With(e => e.isReadyToCollectTargets = true)
                 .With(e => e.isCollectingTargetsContinuously = true)
+                .With(e => e.isRotatedAlongDirection = true)
                 .AddSelfDestructTimer(projectileSetup.LifeTime);
         }
     }

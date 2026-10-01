@@ -8,8 +8,8 @@ namespace Code.Common.Destroy
         public ProcessDestroyedFeature(ISystemFactory systemFactory)
         {
             Add(systemFactory.Create<SelfDestructTimerSystem>());
-            Add(systemFactory.Create<Systems.CleanupGameDestroyedViewSystem>());
-            Add(systemFactory.Create<Systems.CleanupGameDestroyedSystem>());
+            Add(systemFactory.Create<CleanupGameDestroyedViewSystem>());
+            Add(systemFactory.Create<CleanupGameDestroyedSystem>());
         }
     }
 }
