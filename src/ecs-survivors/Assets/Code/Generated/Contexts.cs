@@ -60,10 +60,16 @@ public partial class Contexts : Entitas.IContexts {
 //------------------------------------------------------------------------------
 public partial class Contexts {
 
+    public const string EntityLink = "EntityLink";
     public const string ID = "ID";
 
     [Entitas.CodeGeneration.Attributes.PostConstructor]
     public void InitializeEntityIndices() {
+        game.AddEntityIndex(new Entitas.EntityIndex<GameEntity, int>(
+            EntityLink,
+            game.GetGroup(GameMatcher.EntityLink),
+            (e, c) => ((Code.Gameplay.Common.EntityLink)c).Value));
+
         game.AddEntityIndex(new Entitas.PrimaryEntityIndex<GameEntity, int>(
             ID,
             game.GetGroup(GameMatcher.ID),
@@ -72,6 +78,10 @@ public partial class Contexts {
 }
 
 public static class ContextsExtensions {
+
+    public static System.Collections.Generic.HashSet<GameEntity> GetEntitiesWithEntityLink(this GameContext context, int Value) {
+        return ((Entitas.EntityIndex<GameEntity, int>)context.GetEntityIndex(Contexts.EntityLink)).GetEntities(Value);
+    }
 
     public static GameEntity GetEntityWithID(this GameContext context, int Value) {
         return ((Entitas.PrimaryEntityIndex<GameEntity, int>)context.GetEntityIndex(Contexts.ID)).GetEntity(Value);

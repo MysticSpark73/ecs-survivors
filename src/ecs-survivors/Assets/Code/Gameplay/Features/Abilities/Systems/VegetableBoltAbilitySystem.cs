@@ -47,7 +47,9 @@ namespace Code.Gameplay.Features.Abilities.Systems
                 {
                     if (_enemies.count <= 0) continue;
                     
-                    _armamentFactory.CreateVegetableBolt(1, hero.WorldPosition)
+                    _armamentFactory
+                        .CreateVegetableBolt(1, hero.WorldPosition)
+                        .AddProducerId(hero.ID)
                         .ReplaceDirection((FirstAvailableTarget().WorldPosition - hero.WorldPosition).normalized)
                         .With(e => e.isMoving = true);
                         
