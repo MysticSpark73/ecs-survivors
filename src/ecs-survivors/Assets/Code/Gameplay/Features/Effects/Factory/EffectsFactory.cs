@@ -3,7 +3,7 @@ using Code.Common.Entity;
 using Code.Common.Extensions;
 using Code.Infrastructure.Identifiers;
 
-namespace Code.Gameplay.Features.Effects.Facts
+namespace Code.Gameplay.Features.Effects.Factory
 {
     public class EffectsFactory : IEffectsFactory
     {

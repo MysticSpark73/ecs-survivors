@@ -1,3 +1,4 @@
+using Code.Common.EntityIndexes;
 using Code.Gameplay.Cameras.Provider;
 using Code.Gameplay.Common.Collisions;
 using Code.Gameplay.Common.Physics;
@@ -5,9 +6,11 @@ using Code.Gameplay.Common.Random;
 using Code.Gameplay.Common.Time;
 using Code.Gameplay.Features.Abilities.Factory;
 using Code.Gameplay.Features.Armaments.Factory;
-using Code.Gameplay.Features.Effects.Facts;
+using Code.Gameplay.Features.Effects.Factory;
 using Code.Gameplay.Features.Enemies.Factory;
 using Code.Gameplay.Features.Hero.Factory;
+using Code.Gameplay.Features.Statuses.Applier;
+using Code.Gameplay.Features.Statuses.Factory;
 using Code.Gameplay.Input.Service;
 using Code.Gameplay.Levels;
 using Code.Gameplay.StaticData;
@@ -33,6 +36,7 @@ namespace Code.Infrastructure.Installers
       BindGameplayServices();
       BindGameplayFactories();
       BindCameraProvider();
+      BindEntityIndexes();
     }
 
     private void BindContexts()
@@ -51,6 +55,7 @@ namespace Code.Infrastructure.Installers
     {
       Container.Bind<IStaticDataService>().To<StaticDataService>().AsSingle();
       Container.Bind<ILevelDataProvider>().To<LevelDataProvider>().AsSingle();
+      Container.Bind<IStatusApplier>().To<StatusApplier>().AsSingle();
     }
 
     private void BindGameplayFactories()
@@ -61,6 +66,12 @@ namespace Code.Infrastructure.Installers
       Container.Bind<IArmamentFactory>().To<ArmamentFactory>().AsSingle();
       Container.Bind<IAbilityFactory>().To<AbilityFactory>().AsSingle();
       Container.Bind<IEffectsFactory>().To<EffectsFactory>().AsSingle();
+      Container.Bind<IStatusFactory>().To<StatusFactory>().AsSingle();
+    }
+
+    private void BindEntityIndexes()
+    {
+      Container.BindInterfacesAndSelfTo<GameEntityIndexes>().AsSingle();
     }
 
     private void BindInfrastructureServices()
@@ -92,7 +103,7 @@ namespace Code.Infrastructure.Installers
     {
       Container.Bind<IInputService>().To<StandaloneInputService>().AsSingle();
     }
-    
+
     public void Initialize()
     {
       Container.Resolve<IStaticDataService>().LoadAll();

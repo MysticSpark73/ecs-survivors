@@ -1,4 +1,4 @@
-﻿namespace Code.Gameplay.Features.Effects.Facts
+﻿namespace Code.Gameplay.Features.Effects.Factory
 {
     public interface IEffectsFactory
     {
