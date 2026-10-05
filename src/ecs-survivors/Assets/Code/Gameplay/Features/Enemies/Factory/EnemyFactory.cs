@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Code.Common.Entity;
 using Code.Common.Extensions;
+using Code.Gameplay.Features.CharacterStats;
 using Code.Gameplay.Features.Effects;
 using Code.Infrastructure.Identifiers;
 using UnityEngine;
@@ -32,17 +33,24 @@ namespace Code.Gameplay.Features.Enemies.Factory
 
         private GameEntity CreateGoblin(Vector3 position)
         {
+            var baseStats = InitStats.EmptyStatsDictionary()
+                .With(i => i[Stats.Speed] = 1)
+                .With(i => i[Stats.MaxHp] = 3)
+                .With(i => i[Stats.Damage] = 1);
+                
             return CreateEntity.Empty()
                 .AddID(_identifierService.Next())
                 .AddEnemyTypeId(EnemyTypeId.Goblin)
                 .AddWorldPosition(position)
                 .AddDirection(Vector2.zero)
-                .AddSpeed(1)
-                .AddCurrentHP(3)
-                .AddMaxHP(3)
+                .AddBaseStats(baseStats)
+                .AddStatModifiers(InitStats.EmptyStatsDictionary())
+                .AddSpeed(baseStats[Stats.Speed])
+                .AddCurrentHP(baseStats[Stats.MaxHp])
+                .AddMaxHP(baseStats[Stats.MaxHp])
                 .AddEffectSetups(new List<EffectSetup>()
                     { new EffectSetup() 
-                        { EffectTypeId = EffectTypeId.Damage, Value = 1 } 
+                        { EffectTypeId = EffectTypeId.Damage, Value = baseStats[Stats.Damage] } 
                     })
                 .AddTargetsBuffer(new List<int>(1))
                 .AddRadius(.3f)

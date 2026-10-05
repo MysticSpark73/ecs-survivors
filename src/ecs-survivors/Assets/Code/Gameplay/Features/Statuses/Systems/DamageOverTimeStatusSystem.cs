@@ -11,8 +11,9 @@ namespace Code.Gameplay.Features.Statuses.Systems
         private readonly IEffectsFactory _effectsFactory;
 
         private readonly IGroup<GameEntity> _statuses;
-    
-        public DamageOverTimeStatusSystem(GameContext gameContext, ITimeService timeService, IEffectsFactory effectsFactory)
+
+        public DamageOverTimeStatusSystem(GameContext gameContext, ITimeService timeService,
+            IEffectsFactory effectsFactory)
         {
             _timeService = timeService;
             _effectsFactory = effectsFactory;
@@ -26,7 +27,7 @@ namespace Code.Gameplay.Features.Statuses.Systems
                     GameMatcher.ProducerId,
                     GameMatcher.TargetId));
         }
-            
+
         public void Execute()
         {
             foreach (var status in _statuses)
@@ -38,12 +39,12 @@ namespace Code.Gameplay.Features.Statuses.Systems
                 else
                 {
                     status.ReplaceTimeSinceLastPeriod(status.Period);
-                    
+
                     _effectsFactory.CreateEffect(new EffectSetup()
-                    {
-                        EffectTypeId = EffectTypeId.Damage,
-                        Value = status.EffectValue
-                    },
+                        {
+                            EffectTypeId = EffectTypeId.Damage,
+                            Value = status.EffectValue
+                        },
                         status.ProducerId,
                         status.TargetId);
                 }

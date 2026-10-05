@@ -22,6 +22,9 @@ namespace Code.Gameplay.Features.Statuses.Factory
                 case StatusTypeId.Poison:
                     status = CreatePoisonStatus(setup, producerId, targetId);
                     break;
+                case StatusTypeId.Freeze:
+                    status = CreateFreezeStatus(setup, producerId, targetId);
+                    break;
                 default:
                     throw new Exception($"Effect with type id {setup.StatusTypeId} does not exist");
             }
@@ -56,6 +59,18 @@ namespace Code.Gameplay.Features.Statuses.Factory
                 .AddTargetId(targetId)
                 .With(e => e.isStatus = true)
                 .With(e => e.isPoison = true);
+        }
+        
+        private GameEntity CreateFreezeStatus(StatusSetup setup, int producerId, int targetId)
+        {
+            return CreateEntity.Empty()
+                .AddID(_identifierService.Next())
+                .AddStatusTypeId(StatusTypeId.Poison)
+                .AddEffectValue(setup.Value)
+                .AddProducerId(producerId)
+                .AddTargetId(targetId)
+                .With(e => e.isStatus = true)
+                .With(e => e.isFreeze = true);
         }
     }
 }

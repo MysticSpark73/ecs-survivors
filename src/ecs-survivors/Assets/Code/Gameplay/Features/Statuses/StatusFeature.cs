@@ -9,8 +9,10 @@ namespace Code.Gameplay.Features.Statuses
         {
             Add(systemFactory.Create<StatusDurationSystem>());
             Add(systemFactory.Create<DamageOverTimeStatusSystem>());
+            Add(systemFactory.Create<ApplyFreezeStatusSystem>());
             Add(systemFactory.Create<StatusVisualsFeature>());
             Add(systemFactory.Create<CleanupUnappliedStatusesSystem>());
+            Add(systemFactory.Create<CleanupUnappliedStatusLinkedChangesSystem>());
         }
     }
 }
