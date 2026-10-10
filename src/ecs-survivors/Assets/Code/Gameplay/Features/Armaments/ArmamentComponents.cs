@@ -7,6 +7,7 @@ namespace Code.Gameplay.Features.Armaments
 {
     [Game] public class Armament : IComponent { }
     [Game] public class ArmamentProcessed : IComponent { }
+    [Game] public class FollowingProducer : IComponent { }
     [Game] public class TargetsLimit : IComponent { public int Value; }
     [Game] public class EffectSetups : IComponent { public List<EffectSetup> Value; }
     [Game] public class StatusSetups : IComponent { public List<StatusSetup> Value; }

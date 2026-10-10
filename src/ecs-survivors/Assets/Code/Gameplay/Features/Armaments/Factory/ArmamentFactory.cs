@@ -25,24 +25,62 @@ namespace Code.Gameplay.Features.Armaments.Factory
         {
             AbilityLevel abilityLevel = _staticDataService.GetAbilityLevel(AbilityId.VegetableBolt, level);
             ProjectileSetup projectileSetup = abilityLevel.ProjectileSetup;
-            
+
+            return CreateProjectileEntity(position, abilityLevel, projectileSetup)
+                .AddParentAbility(AbilityId.VegetableBolt)
+                .With(e => e.isRotatedAlongDirection = true);
+        }
+        
+        public GameEntity CreateOrbitingMushroom(int level, Vector3 position, float phase)
+        {
+            AbilityLevel abilityLevel = _staticDataService.GetAbilityLevel(AbilityId.OrbitingMushroom, level);
+            ProjectileSetup projectileSetup = abilityLevel.ProjectileSetup;
+
+            return CreateProjectileEntity(position, abilityLevel, projectileSetup)
+                .AddParentAbility(AbilityId.OrbitingMushroom)
+                .AddOrbitPhase(phase)
+                .AddOrbitRadius(projectileSetup.OrbitRadius);
+        }
+
+        public GameEntity CreateEffectAura(AbilityId parentAbilityId, int producerId, int level)
+        {
+            AbilityLevel abilityLevel = _staticDataService.GetAbilityLevel(AbilityId.GarlicAura, level);
+            AuraSetup auraSetup = abilityLevel.AuraSetup;
+
+            return CreateEntity.Empty()
+                .AddID(_identifierService.Next())
+                .AddProducerId(producerId)
+                .AddParentAbility(parentAbilityId)
+                .AddViewPrefab(abilityLevel.ViewPrefab)
+                .AddRadius(auraSetup.Radius)
+                .With(e => e.AddEffectSetups(abilityLevel.EffectSetups), when: !abilityLevel.EffectSetups.IsNullOrEmpty())
+                .With(e => e.AddStatusSetups(abilityLevel.StatusSetups), when: !abilityLevel.StatusSetups.IsNullOrEmpty())
+                .AddTargetsBuffer(new List<int>(TargetsBufferCapacity))
+                .AddCollectTargetsInterval(auraSetup.Interval)
+                .AddCollectTargetsTimer(0)
+                .AddLayerMask(CollisionLayer.Enemy.AsMask())
+                .AddWorldPosition(Vector3.zero)
+                .With(e => e.isFollowingProducer =  true);
+        }
+
+        private GameEntity CreateProjectileEntity(Vector3 position, AbilityLevel abilityLevel, ProjectileSetup projectileSetup)
+        {
             return CreateEntity.Empty()
                 .AddID(_identifierService.Next())
                 .With(e => e.isArmament = true)
                 .AddViewPrefab(abilityLevel.ViewPrefab)
                 .AddWorldPosition(position)
                 .AddSpeed(projectileSetup.Speed)
-                .AddEffectSetups(abilityLevel.EffectSetups)
-                .AddStatusSetups(abilityLevel.StatusSetups)
+                .With(e =>e.AddEffectSetups(abilityLevel.EffectSetups), when: !abilityLevel.EffectSetups.IsNullOrEmpty())
+                .With(e =>e.AddStatusSetups(abilityLevel.StatusSetups), when: !abilityLevel.StatusSetups.IsNullOrEmpty())
                 .AddRadius(projectileSetup.ContactRadius)
                 .AddTargetsBuffer(new List<int>(TargetsBufferCapacity))
                 .AddProcessedTargets(new List<int>(TargetsBufferCapacity))
-                .AddTargetsLimit(projectileSetup.Pierce)
+                .With(e => e.AddTargetsLimit(projectileSetup.Pierce), when: projectileSetup.Pierce > 0)
                 .AddLayerMask(CollisionLayer.Enemy.AsMask())
                 .With(e => e.isMovementAvailable = true)
                 .With(e => e.isReadyToCollectTargets = true)
                 .With(e => e.isCollectingTargetsContinuously = true)
-                .With(e => e.isRotatedAlongDirection = true)
                 .AddSelfDestructTimer(projectileSetup.LifeTime);
         }
     }
