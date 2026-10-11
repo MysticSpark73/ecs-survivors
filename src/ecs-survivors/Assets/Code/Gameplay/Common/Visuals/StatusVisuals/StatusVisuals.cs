@@ -28,7 +28,6 @@ namespace Code.Gameplay.Common.Visuals.StatusVisuals
             _renderer.material.SetFloat(OutlineSizeProperty, _freezeOutlineSize);
             _renderer.material.SetFloat(OutlineSmoothnessProperty, _freezeOutlineSmoothness);
             _animator.speed = 0;
-            Debug.Log("Frozen", this);
         }
 
         public void UnapplyFreeze()

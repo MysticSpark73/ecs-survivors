@@ -1,6 +1,7 @@
 ﻿using System;
 using Code.Common.Entity;
 using Code.Common.Extensions;
+using Code.Gameplay.Features.Enchants;
 using Code.Infrastructure.Identifiers;
 
 namespace Code.Gameplay.Features.Statuses.Factory
@@ -24,6 +25,12 @@ namespace Code.Gameplay.Features.Statuses.Factory
                     break;
                 case StatusTypeId.Freeze:
                     status = CreateFreezeStatus(setup, producerId, targetId);
+                    break;
+                case StatusTypeId.PoisonEnchant:
+                    status = CreatePoisonEnchantStatus(setup, producerId, targetId);
+                    break;
+                case StatusTypeId.ExplosiveEnchant:
+                    status = CreateExplosiveEnchantStatus(setup, producerId, targetId);
                     break;
                 default:
                     throw new Exception($"Effect with type id {setup.StatusTypeId} does not exist");
@@ -60,7 +67,7 @@ namespace Code.Gameplay.Features.Statuses.Factory
                 .With(e => e.isStatus = true)
                 .With(e => e.isPoison = true);
         }
-        
+
         private GameEntity CreateFreezeStatus(StatusSetup setup, int producerId, int targetId)
         {
             return CreateEntity.Empty()
@@ -71,6 +78,32 @@ namespace Code.Gameplay.Features.Statuses.Factory
                 .AddTargetId(targetId)
                 .With(e => e.isStatus = true)
                 .With(e => e.isFreeze = true);
+        }
+
+        private GameEntity CreatePoisonEnchantStatus(StatusSetup setup, int producerId, int targetId)
+        {
+            return CreateEntity.Empty()
+                .AddID(_identifierService.Next())
+                .AddStatusTypeId(StatusTypeId.PoisonEnchant)
+                .AddEnchantTypeId(EnchantTypeId.PoisonArmaments)
+                .AddEffectValue(setup.Value)
+                .AddProducerId(producerId)
+                .AddTargetId(targetId)
+                .With(e => e.isStatus = true)
+                .With(e => e.isPoisonEnchant = true);
+        }
+
+        private GameEntity CreateExplosiveEnchantStatus(StatusSetup setup, int producerId, int targetId)
+        {
+            return CreateEntity.Empty()
+                .AddID(_identifierService.Next())
+                .AddStatusTypeId(StatusTypeId.ExplosiveEnchant)
+                .AddEnchantTypeId(EnchantTypeId.ExplosiveArmaments)
+                .AddEffectValue(setup.Value)
+                .AddProducerId(producerId)
+                .AddTargetId(targetId)
+                .With(e => e.isStatus = true)
+                .With(e => e.isExplosiveEnchant = true);
         }
     }
 }

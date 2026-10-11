@@ -3,6 +3,7 @@ using Code.Common.Entity;
 using Code.Common.Extensions;
 using Code.Gameplay.Features.Abilities;
 using Code.Gameplay.Features.Abilities.Configs;
+using Code.Gameplay.Features.Enchants;
 using Code.Gameplay.StaticData;
 using Code.Infrastructure.Identifiers;
 using UnityEngine;
@@ -61,6 +62,24 @@ namespace Code.Gameplay.Features.Armaments.Factory
                 .AddLayerMask(CollisionLayer.Enemy.AsMask())
                 .AddWorldPosition(Vector3.zero)
                 .With(e => e.isFollowingProducer =  true);
+        }
+
+        public GameEntity CreateExplosion(int producerId, Vector3 position)
+        {
+            EnchantConfig config = _staticDataService.GetEnchantConfig(EnchantTypeId.ExplosiveArmaments);
+
+            return CreateEntity.Empty()
+                .AddID(_identifierService.Next())
+                .AddLayerMask(CollisionLayer.Enemy.AsMask())
+                .AddProducerId(producerId)
+                .AddRadius(config.Radius)
+                .AddViewPrefab(config.ViewPrefab)
+                .With(e => e.AddEffectSetups(config.EffectSetups), when: !config.EffectSetups.IsNullOrEmpty())
+                .With(e => e.AddStatusSetups(config.StatusSetups), when: !config.StatusSetups.IsNullOrEmpty())
+                .AddTargetsBuffer(new List<int>(TargetsBufferCapacity))
+                .AddWorldPosition(position)
+                .With(e => e.isReadyToCollectTargets = true)
+                .AddSelfDestructTimer(1);
         }
 
         private GameEntity CreateProjectileEntity(Vector3 position, AbilityLevel abilityLevel, ProjectileSetup projectileSetup)

@@ -11,4 +11,5 @@ namespace Code.Gameplay.Features.TargetCollection
     [Game] public class LayerMask : IComponent { public int Value; }
     [Game] public class ReadyToCollectTargets : IComponent { }
     [Game] public class CollectingTargetsContinuously : IComponent { }
+    [Game] public class ReachedTarget : IComponent { }
 }
