@@ -1,6 +1,8 @@
 ﻿using Code.Gameplay.Features.Abilities;
 using Code.Gameplay.Features.Abilities.Configs;
 using Code.Gameplay.Features.Enchants;
+using Code.Gameplay.Features.Loot;
+using Code.Gameplay.Features.Loot.Configs;
 
 namespace Code.Gameplay.StaticData
 {
@@ -10,5 +12,6 @@ namespace Code.Gameplay.StaticData
         AbilityConfig GetAbilityConfig(AbilityId id);
         AbilityLevel GetAbilityLevel(AbilityId id, int level);
         EnchantConfig GetEnchantConfig(EnchantTypeId id);
+        LootConfig GetLootConfig(LootTypeId id);
     }
 }
