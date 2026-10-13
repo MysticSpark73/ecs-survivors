@@ -1,4 +1,5 @@
 ﻿using Code.Gameplay.Common.Visuals.EnchantVisuals;
+using Code.Gameplay.Features.Enchants.Behaviours;
 using Entitas;
 
 namespace Code.Gameplay.Features.Enchants
@@ -7,4 +8,5 @@ namespace Code.Gameplay.Features.Enchants
     [Game] public class ExplosiveEnchant : IComponent { }
     [Game] public class EnchantTypeIdComponent : IComponent { public EnchantTypeId Value; }
     [Game] public class EnchantVisualsComponent : IComponent { public IEnchantVisuals Value; }
+    [Game] public class EnchantHolderComponent : IComponent { public EnchantHolder Value; }
 }
