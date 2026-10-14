@@ -1,10 +1,8 @@
-﻿using Code.Gameplay.Features.Effects;
-using Code.Gameplay.Features.Effects.Factory;
-using Code.Gameplay.Features.Statuses;
+﻿using Code.Gameplay.Features.Statuses;
 using Code.Gameplay.Features.Statuses.Applier;
 using Entitas;
 
-namespace Code.Gameplay.Features.Loot
+namespace Code.Gameplay.Features.Loot.Systems
 {
     public class CollectStatusItemSystem : IExecuteSystem
     {

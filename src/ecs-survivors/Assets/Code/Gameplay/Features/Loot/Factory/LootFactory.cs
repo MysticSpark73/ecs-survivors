@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Code.Gameplay.Features.Loot.Factory
 {
-    public class LootFactory : ILootFactory
+    public class LootFactory : ILootFactory 
     {
         private readonly IIdentifierService _identifierService;
         private readonly IStaticDataService _staticDataService;

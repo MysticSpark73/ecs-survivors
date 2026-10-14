@@ -4,8 +4,11 @@ using System.Linq;
 using Code.Gameplay.Features.Abilities;
 using Code.Gameplay.Features.Abilities.Configs;
 using Code.Gameplay.Features.Enchants;
+using Code.Gameplay.Features.LevelUp;
 using Code.Gameplay.Features.Loot;
 using Code.Gameplay.Features.Loot.Configs;
+using Code.Gameplay.Windows;
+using Code.Gameplay.Windows.Configs;
 using UnityEngine;
 
 namespace Code.Gameplay.StaticData
@@ -15,16 +18,23 @@ namespace Code.Gameplay.StaticData
         private const string AbilitiesPath = "Configs/Abilities";
         private const string EnchantsPath = "Configs/Enchants";
         private const string LootPath = "Configs/Loot";
+        public const string WindowsPath = "Configs/Windows/WindowsConfig";
+        public const string LevelUpPath = "Configs/LevelUp/LevelUpConfig";
 
         private Dictionary<AbilityId, AbilityConfig> _abilityById;
         private Dictionary<EnchantTypeId, EnchantConfig> _enchantById;
         private Dictionary<LootTypeId, LootConfig> _lootById;
+        private Dictionary<WindowId, GameObject> _windowPrefabsById;
+        private LevelUpConfig _levelUpConfig;
+
 
         public void LoadAll()
         {
             LoadAbilities();
             LoadEnchants();
             LoadLoot();
+            LoadWindows();
+            LoadLevelUp();
         }
 
         public AbilityConfig GetAbilityConfig(AbilityId id)
@@ -46,7 +56,7 @@ namespace Code.Gameplay.StaticData
 
             throw new Exception($"EnchantConfig for {id} not found");
         }
-        
+
         public LootConfig GetLootConfig(LootTypeId id)
         {
             if (_lootById.TryGetValue(id, out LootConfig lootConfig))
@@ -56,6 +66,17 @@ namespace Code.Gameplay.StaticData
 
             throw new Exception($"LootConfig for {id} not found");
         }
+
+        public GameObject GetWindowPrefab(WindowId id)
+        {
+            if (_windowPrefabsById.TryGetValue(id, out GameObject prefab))
+                return prefab;
+            
+            throw new Exception($"Prefab for window with id {id} not found");
+        }
+
+        public int GetMaxLevel() => _levelUpConfig.MaxLevel;
+        public float GetExperienceForLevel(int level) => _levelUpConfig.ExperienceForLevelUp[level];
 
         public AbilityLevel GetAbilityLevel(AbilityId id, int level)
         {
@@ -88,6 +109,19 @@ namespace Code.Gameplay.StaticData
             _lootById = Resources
                 .LoadAll<LootConfig>(LootPath)
                 .ToDictionary(i => i.TypeId, i => i);
+        }
+
+        private void LoadWindows()
+        {
+            _windowPrefabsById = Resources
+                .Load<WindowsConfig>(WindowsPath)
+                .WindowConfigs
+                .ToDictionary(i => i.Id, i => i.Prefab);
+        }
+
+        private void LoadLevelUp()
+        {
+            _levelUpConfig = Resources.Load<LevelUpConfig>(LevelUpPath);
         }
     }
 }

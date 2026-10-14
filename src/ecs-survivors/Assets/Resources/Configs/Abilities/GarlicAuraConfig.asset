@@ -32,3 +32,67 @@ MonoBehaviour:
     AuraSetup:
       Radius: 2
       Interval: 0.5
+    Icon: {fileID: 21300000, guid: 7c5b1d69d323a2c489af81f57a7a9602, type: 3}
+    Description: Garlic aura
+  - Cooldown: 0
+    ViewPrefab: {fileID: 6509155975008224199, guid: 1faa1a8b1c87d904d8809b424d791359, type: 3}
+    EffectSetups: []
+    StatusSetups:
+    - StatusTypeId: 2
+      Value: -5
+      Duration: 0.2
+      Period: 0
+    ProjectileSetup:
+      ProjectileCount: 0
+      Speed: 0
+      Pierce: 0
+      ContactRadius: 0
+      LifeTime: 0
+      OrbitRadius: 0
+    AuraSetup:
+      Radius: 4
+      Interval: 0.5
+    Icon: {fileID: 21300000, guid: 7c5b1d69d323a2c489af81f57a7a9602, type: 3}
+    Description: Increase odor strength
+  - Cooldown: 0
+    ViewPrefab: {fileID: 6509155975008224199, guid: 1faa1a8b1c87d904d8809b424d791359, type: 3}
+    EffectSetups: []
+    StatusSetups:
+    - StatusTypeId: 2
+      Value: -5
+      Duration: 0.2
+      Period: 0
+    ProjectileSetup:
+      ProjectileCount: 0
+      Speed: 0
+      Pierce: 0
+      ContactRadius: 0
+      LifeTime: 0
+      OrbitRadius: 0
+    AuraSetup:
+      Radius: 4
+      Interval: 0.25
+    Icon: {fileID: 21300000, guid: 7c5b1d69d323a2c489af81f57a7a9602, type: 3}
+    Description: Increase odor stunrate
+  - Cooldown: 0
+    ViewPrefab: {fileID: 6509155975008224199, guid: 1faa1a8b1c87d904d8809b424d791359, type: 3}
+    EffectSetups:
+    - EffectTypeId: 1
+      Value: 0.25
+    StatusSetups:
+    - StatusTypeId: 2
+      Value: -5
+      Duration: 0.2
+      Period: 0
+    ProjectileSetup:
+      ProjectileCount: 0
+      Speed: 0
+      Pierce: 0
+      ContactRadius: 0
+      LifeTime: 0
+      OrbitRadius: 0
+    AuraSetup:
+      Radius: 8
+      Interval: 0.25
+    Icon: {fileID: 21300000, guid: 7c5b1d69d323a2c489af81f57a7a9602, type: 3}
+    Description: Increase odor strength

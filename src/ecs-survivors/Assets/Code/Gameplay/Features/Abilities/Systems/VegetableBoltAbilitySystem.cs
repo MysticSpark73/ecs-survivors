@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Code.Common.Extensions;
+using Code.Gameplay.Features.Abilities.Upgrade;
 using Code.Gameplay.Features.Armaments.Factory;
 using Code.Gameplay.Features.Cooldowns;
 using Code.Gameplay.StaticData;
@@ -12,16 +13,19 @@ namespace Code.Gameplay.Features.Abilities.Systems
     {
         private readonly IStaticDataService _staticDataService;
         private readonly IArmamentFactory _armamentFactory;
+        private readonly IAbilityUpgradeService _abilityUpgradeService;
 
-        private readonly List<GameEntity> _buffer = new List<GameEntity>(8);
+        private readonly List<GameEntity> _buffer = new (8);
         private readonly IGroup<GameEntity> _abilities;
         private readonly IGroup<GameEntity> _heroes;
         private readonly IGroup<GameEntity> _enemies;
 
-        public VegetableBoltAbilitySystem(GameContext gameContext, IStaticDataService staticDataService, IArmamentFactory armamentFactory)
+        public VegetableBoltAbilitySystem(GameContext gameContext, IStaticDataService staticDataService,
+            IArmamentFactory armamentFactory, IAbilityUpgradeService abilityUpgradeService)
         {
             _staticDataService = staticDataService;
             _armamentFactory = armamentFactory;
+            _abilityUpgradeService = abilityUpgradeService;
 
             _abilities = gameContext.GetGroup(GameMatcher
                 .AllOf(
@@ -46,14 +50,16 @@ namespace Code.Gameplay.Features.Abilities.Systems
                 foreach (GameEntity hero in _heroes)
                 {
                     if (_enemies.count <= 0) continue;
+
+                    int level = _abilityUpgradeService.GetAbilityLevel(AbilityId.VegetableBolt);
                     
                     _armamentFactory
-                        .CreateVegetableBolt(1, hero.WorldPosition)
+                        .CreateVegetableBolt(level, hero.WorldPosition)
                         .AddProducerId(hero.ID)
                         .ReplaceDirection((FirstAvailableTarget().WorldPosition - hero.WorldPosition).normalized)
                         .With(e => e.isMoving = true);
                         
-                    ability.PutOnCooldown(_staticDataService.GetAbilityLevel(AbilityId.VegetableBolt, 1).Cooldown);
+                    ability.PutOnCooldown(_staticDataService.GetAbilityLevel(AbilityId.VegetableBolt, level).Cooldown);
                 }
             }
         }

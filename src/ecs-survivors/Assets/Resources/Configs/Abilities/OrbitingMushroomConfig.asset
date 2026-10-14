@@ -21,7 +21,7 @@ MonoBehaviour:
       Value: 1
     StatusSetups: []
     ProjectileSetup:
-      ProjectileCount: 3
+      ProjectileCount: 1
       Speed: 2
       Pierce: 0
       ContactRadius: 0.1
@@ -30,3 +30,59 @@ MonoBehaviour:
     AuraSetup:
       Radius: 0
       Interval: 0
+    Icon: {fileID: 21300000, guid: 4d94380f2cdab534b96b00f84934873a, type: 3}
+    Description: One orbital mushroom
+  - Cooldown: 5
+    ViewPrefab: {fileID: 1019005416815200751, guid: 92dc63e318e181a4a9587ecf7216ee46, type: 3}
+    EffectSetups:
+    - EffectTypeId: 1
+      Value: 1
+    StatusSetups: []
+    ProjectileSetup:
+      ProjectileCount: 2
+      Speed: 2
+      Pierce: 0
+      ContactRadius: 0.1
+      LifeTime: 3
+      OrbitRadius: 1.5
+    AuraSetup:
+      Radius: 0
+      Interval: 0
+    Icon: {fileID: 21300000, guid: 4d94380f2cdab534b96b00f84934873a, type: 3}
+    Description: Two orbital mushrooms
+  - Cooldown: 5
+    ViewPrefab: {fileID: 1019005416815200751, guid: 92dc63e318e181a4a9587ecf7216ee46, type: 3}
+    EffectSetups:
+    - EffectTypeId: 1
+      Value: 1
+    StatusSetups: []
+    ProjectileSetup:
+      ProjectileCount: 3
+      Speed: 2
+      Pierce: 0
+      ContactRadius: 0.1
+      LifeTime: 3
+      OrbitRadius: 2
+    AuraSetup:
+      Radius: 0
+      Interval: 0
+    Icon: {fileID: 21300000, guid: 4d94380f2cdab534b96b00f84934873a, type: 3}
+    Description: Three orbital mushrooms
+  - Cooldown: 5
+    ViewPrefab: {fileID: 1019005416815200751, guid: 92dc63e318e181a4a9587ecf7216ee46, type: 3}
+    EffectSetups:
+    - EffectTypeId: 1
+      Value: 1
+    StatusSetups: []
+    ProjectileSetup:
+      ProjectileCount: 4
+      Speed: 2
+      Pierce: 0
+      ContactRadius: 0.1
+      LifeTime: 3
+      OrbitRadius: 2.5
+    AuraSetup:
+      Radius: 0
+      Interval: 0
+    Icon: {fileID: 21300000, guid: 4d94380f2cdab534b96b00f84934873a, type: 3}
+    Description: Four orbital mushrooms

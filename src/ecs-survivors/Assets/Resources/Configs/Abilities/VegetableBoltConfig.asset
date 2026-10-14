@@ -18,7 +18,7 @@ MonoBehaviour:
     ViewPrefab: {fileID: 1019005416815200751, guid: 08ce9f5922001044d87f0b92a159a8c4, type: 3}
     EffectSetups:
     - EffectTypeId: 1
-      Value: 0.1
+      Value: 1
     StatusSetups: []
     ProjectileSetup:
       ProjectileCount: 1
@@ -30,3 +30,59 @@ MonoBehaviour:
     AuraSetup:
       Radius: 0
       Interval: 0
+    Icon: {fileID: -219949570, guid: d5b38a44d661b59469b9795112af70db, type: 3}
+    Description: Vegetable Bolt
+  - Cooldown: 0.5
+    ViewPrefab: {fileID: 1019005416815200751, guid: 08ce9f5922001044d87f0b92a159a8c4, type: 3}
+    EffectSetups:
+    - EffectTypeId: 1
+      Value: 1
+    StatusSetups: []
+    ProjectileSetup:
+      ProjectileCount: 1
+      Speed: 2
+      Pierce: 3
+      ContactRadius: 0.1
+      LifeTime: 3
+      OrbitRadius: 0
+    AuraSetup:
+      Radius: 0
+      Interval: 0
+    Icon: {fileID: -219949570, guid: d5b38a44d661b59469b9795112af70db, type: 3}
+    Description: Reduce Cooldown
+  - Cooldown: 0.5
+    ViewPrefab: {fileID: 1019005416815200751, guid: 08ce9f5922001044d87f0b92a159a8c4, type: 3}
+    EffectSetups:
+    - EffectTypeId: 1
+      Value: 1
+    StatusSetups: []
+    ProjectileSetup:
+      ProjectileCount: 1
+      Speed: 4
+      Pierce: 3
+      ContactRadius: 0.1
+      LifeTime: 3
+      OrbitRadius: 0
+    AuraSetup:
+      Radius: 0
+      Interval: 0
+    Icon: {fileID: -219949570, guid: d5b38a44d661b59469b9795112af70db, type: 3}
+    Description: Increase speed
+  - Cooldown: 0.5
+    ViewPrefab: {fileID: 1019005416815200751, guid: 08ce9f5922001044d87f0b92a159a8c4, type: 3}
+    EffectSetups:
+    - EffectTypeId: 1
+      Value: 1
+    StatusSetups: []
+    ProjectileSetup:
+      ProjectileCount: 1
+      Speed: 4
+      Pierce: 5
+      ContactRadius: 0.1
+      LifeTime: 3
+      OrbitRadius: 0
+    AuraSetup:
+      Radius: 0
+      Interval: 0
+    Icon: {fileID: -219949570, guid: d5b38a44d661b59469b9795112af70db, type: 3}
+    Description: Increase pierce

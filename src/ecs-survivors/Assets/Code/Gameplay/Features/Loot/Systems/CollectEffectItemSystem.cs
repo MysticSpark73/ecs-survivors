@@ -2,7 +2,7 @@
 using Code.Gameplay.Features.Effects.Factory;
 using Entitas;
 
-namespace Code.Gameplay.Features.Loot
+namespace Code.Gameplay.Features.Loot.Systems
 {
     public class CollectEffectItemSystem : IExecuteSystem
     {
